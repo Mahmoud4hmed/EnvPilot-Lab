@@ -94,7 +94,7 @@ def up():
     must(compose(['run', '--rm', '--no-deps', 'api', 'python', 'manage.py', 'migrate', '--noinput']))
     must(compose(['run', '--rm', '--no-deps', 'api', 'python', 'manage.py', 'seed']))
     must(compose(['up', '-d', '--wait', '--wait-timeout', '180']))
-    print('Open http://localhost:8090 — owner / LabPass123!')
+    print('Open http://localhost:8090 — choose a demo Role; no login required.')
 
 
 def check(exercise):

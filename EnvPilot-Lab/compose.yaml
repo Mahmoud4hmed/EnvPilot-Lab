@@ -6,6 +6,7 @@ x-backend: &backend
     DB_HOST: db
     BROKER_URL: redis://redis:6379/0
     PROVIDER_URL: http://provider:9000
+    LAB_DEMO_ROLE_SWITCH: '1'
   volumes:
     - ./backend:/app
   depends_on:

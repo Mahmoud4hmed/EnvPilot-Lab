@@ -6,6 +6,10 @@ No browser-only authorization: all object and role checks apply server-side, inc
 
 ## Authentication and roles
 
+The local dashboard uses a demo **Role** dropdown instead of a login form. It calls `POST /api/demo-session/` with `{"role":"viewer"}` to receive `{username, token, memberships}` for a fixed seeded account. Supported selectors: owner, developer, viewer, other_owner, dual, outsider. Tokens represent the real account; this endpoint never grants a client-supplied role to an arbitrary user. Unknown roles return 400; missing/inactive/staff/superuser accounts cannot be selected. Responses use `Cache-Control: no-store`.
+
+This teaching-only endpoint is enabled explicitly by Compose's `LAB_DEMO_ROLE_SWITCH=1`. Without that setting it returns 404. It is intended for the loopback-only local lab. The dropdown saves only role/organization preferences; product API endpoints retain their authentication and authorization contracts below. The independent mock has its own login flow.
+
 `POST /api/login/` with `{"username":"owner","password":"LabPass123!"}` → 200 `{"token":"..."}`; invalid credentials 400.
 `GET /api/me/` → `{"username":"owner","memberships":[{"organization":1,"name":"Team Alpha","role":"owner"}]}`.
 Unauthenticated product requests: 401. Invalid/expired token: 401. Login uses DRF's standard token view error format; all other API errors use the envelope below.

@@ -13,7 +13,7 @@ Users see an empty-looking screen while loading, stale data after changing organ
 - Accepted provisioning is displayed truthfully; refresh or polling eventually reflects server state. Use a polling interval between 0.5 and 2 seconds for deterministic checks.
 - Add accessible Search text input filtering current page names case-insensitively; preserve status filtering and Refresh.
 - Keep API responses typed and handle request failures; backend remains authorization authority.
-- Pass deterministic UI checks and, with healthy stack, browser sign-in → provision → observed server readiness. No styling or component-structure grading.
+- Pass deterministic UI checks and, with healthy stack, browser demo-role selection → provision → observed server readiness. No styling or component-structure grading.
 
 ## Relevant checks
 

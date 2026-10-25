@@ -4,6 +4,14 @@ This file preserves the original construction record and subsequent runtime veri
 
 ## Latest runtime update — generic identities and onboarding
 
+### Persistent demo role selector
+
+The dashboard now opens directly with a Role dropdown instead of a login form. It remembers role and organization preferences across remounts/reloads and reacquires a token for the selected fixed demo account. The local-only endpoint is explicitly enabled by Compose; ordinary product API permissions and the intentional exercise defects remain unchanged.
+
+Verification executed for this update: nine PostgreSQL-backed demo-role tests passed (fixed account mapping, default-disabled endpoint, invalid selectors, unchanged viewer authorization, and password-independent switching); six frontend smoke tests passed (default owner, persistence, stale-response isolation, retry, outsider state, and glossary); TypeScript validation and the Next.js production build passed. Live HTTP checks confirmed owner/viewer/outsider sessions and the rendered Role dropdown without a password form. Browser-controlled manual verification was unavailable because local browser use was disabled in Work settings; the updated browser E2E cases were authored but not executed for this update.
+
+`python lab.py check smoke` also passed after deployment, including its PostgreSQL API/seed check, the six frontend smoke checks inside Docker, and a real Celery/provider success operation.
+
 Docker is now available and the existing local stack is running. The following were executed successfully on 2026-10-25:
 
 - The identity migration passed its PostgreSQL regression test, including preservation of user/project/environment IDs, passwords, tokens, memberships, events, and operations. Repeated seeding preserved existing work.

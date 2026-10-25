@@ -56,7 +56,7 @@ Keep the learner and instructor directories adjacent so the CLI can run checks a
 
 Start with [EnvPilot-Lab/START_HERE.md](EnvPilot-Lab/START_HERE.md).
 
-In the running app, use **Start Day 1** or open http://localhost:8090/guide for the exercise cards and a dashboard glossary. Default login: `owner` / `LabPass123!`. Demo organizations are Team Alpha and Team Beta.
+In the running app, use **Start Day 1** or open http://localhost:8090/guide for the exercise cards and a dashboard glossary. The dashboard opens as **Owner** with no login form. Use the **Role** dropdown to switch demo accounts; the browser remembers your role and organization. Demo organizations are Team Alpha and Team Beta. API exercises can still use token login (`owner` / `LabPass123!`).
 
 Clone this repository using GitHub's **Code** button, then run the lab from its checkout:
 

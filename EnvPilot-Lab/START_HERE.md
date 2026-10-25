@@ -32,7 +32,9 @@ python lab.py up
 python lab.py check smoke
 ```
 
-Open http://localhost:8090. All accounts are fictional and use the password `LabPass123!`.
+Open http://localhost:8090. The dashboard opens automatically as Owner. Use the **Role** dropdown to switch between the fixed demo accounts; there is no login form. The selected role and organization are remembered across refreshes and guide navigation. Tokens and passwords are not stored in browser storage.
+
+The role selector is a local training convenience enabled by Compose. Server-side membership and role checks still use the selected account. Token authentication and `/api/login/` remain available for API exercises and CLI requests; all seeded accounts have the default password `LabPass123!`.
 
 The dashboard now includes a **Start Day 1** link and a **What do the dashboard controls mean?** glossary. Open http://localhost:8090/guide to read the checklist, exercise cards, API contract, and commands without leaving the browser.
 
@@ -47,7 +49,7 @@ Your work happens in the repository: read a task, reproduce its behavior using t
 | dual | developer in both organizations |
 | outsider | no memberships |
 
-Existing installations: run `docker compose exec api python manage.py migrate` once to rename the original demo accounts and organizations in place. Then log in as `owner` with your existing password (default `LabPass123!`). Environment IDs, project IDs, operation history, memberships, and tokens are preserved. New installations get the generic names automatically.
+Existing installations: run `python lab.py up` to apply migrations and recreate services with demo role switching enabled. The identity migration renames the original demo accounts and organizations in place. Environment IDs, project IDs, operation history, memberships, passwords, and tokens are preserved. New installations get the generic names automatically.
 
 The first `up` applies migrations and adds seed data. Running it again preserves your work, notes, and any passwords you have changed.
 The initial seed creates 480 environments and 1,440 history events. Get IDs from `/api/me/` and `/api/projects/` rather than assuming fixed values.
@@ -56,7 +58,7 @@ The initial seed creates 480 environments and 1,440 history events. Get IDs from
 ## Your first practical step — 30 minutes
 
 Open [DAY_1.md](DAY_1.md) and copy the [notes template](notes/TEMPLATE.md) to `notes/day-1.md`.
-Record the smoke check results, sketch the request path from Nginx to the database, try signing in, and view one environment.
+Record the smoke check results, sketch the request path from Nginx to the database, try switching roles, and view one environment.
 Read the API contract before making changes. Then open [Exercise 1](issues/01-api.md).
 Avoid opening the adjacent `EnvPilot-Instructor` folder during training. It contains the grader and reference repairs used to validate the exercises.
 The checks invoke it automatically. This separation supports self-study; it is not a security boundary.

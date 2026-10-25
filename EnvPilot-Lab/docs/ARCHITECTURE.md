@@ -16,7 +16,7 @@ flowchart LR
 
 A database transaction controls local data. The provider maintains an independent ledger, so a timeout does not establish whether a resource was created.
 The worker receives an operation ID. Read operation and environment status from the server.
-The frontend stores its token only in memory. Reloading the page requires signing in again.
+The frontend remembers only the demo role and organization in local storage. On reload or return from the guide, it reacquires the selected demo account's token from the explicitly enabled local demo-session endpoint. No login form is required and credentials are not stored in browser storage. Product API endpoints still enforce token authentication and their normal permission rules.
 The local RAG assistant is deterministic and does not call a paid model.
 
 | Path | Purpose |
@@ -25,7 +25,7 @@ The local RAG assistant is deterministic and does not call a paid model.
 | backend/lab | Product domain, API, tasks, assistant |
 | backend/lab/migrations | Checked-in schema history |
 | backend/tests | Starter smoke checks |
-| frontend/app, components, lib | Sign-in, dashboard, typed API client |
+| frontend/app, components, lib | Persistent demo role selection, dashboard, typed API client |
 | frontend/tests, e2e | Observable UI checks and browser path |
 | provider | HTTP simulator with independent resource ledger |
 | infra | Reverse proxy and explicitly activated incidents |

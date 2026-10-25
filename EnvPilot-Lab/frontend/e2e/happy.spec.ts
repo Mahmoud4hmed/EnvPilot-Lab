@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-test('sign in, request provisioning, observe actual worker result', async ({page}) => {
+test('choose a demo role, request provisioning, observe actual worker result', async ({page}) => {
   await page.goto('/');
-  await page.getByLabel('Password').fill('LabPass123!');
-  await page.getByRole('button', {name: 'Sign in', exact: true}).click();
+  await page.getByLabel('Role',{exact:true}).selectOption('owner');
   await expect(page.getByRole('heading', {name: 'Environments', exact: true})).toBeVisible();
   await page.getByLabel('Status', {exact: true}).selectOption('pending');
   const button = page.getByRole('button', {name: /^Provision /}).first();
@@ -17,4 +16,18 @@ test('sign in, request provisioning, observe actual worker result', async ({page
   }, name), {timeout:20000}).toBe('ready');
   await page.getByLabel('Status', {exact: true}).selectOption('ready');
   await expect(page.getByRole('heading', {name,exact:true})).toBeVisible();
+});
+
+test('selected role survives guide navigation and page reload',async({page})=>{
+  await page.goto('/');
+  await page.getByLabel('Role',{exact:true}).selectOption('viewer');
+  await expect(page.getByLabel('Organization',{exact:true})).toContainText('Team Alpha · viewer');
+  await page.getByRole('link',{name:'Start Day 1 →',exact:true}).click();
+  await expect(page.getByRole('heading',{level:1})).toContainText('DAY 1');
+  await page.getByRole('link',{name:'Dashboard',exact:true}).click();
+  await expect(page.getByLabel('Role',{exact:true})).toHaveValue('viewer');
+  await page.reload();
+  await expect(page.getByLabel('Organization',{exact:true})).toContainText('Team Alpha · viewer');
+  await expect(page.getByLabel('Password')).toHaveCount(0);
+  await expect(page.getByRole('button',{name:/^Provision /})).toHaveCount(0);
 });
