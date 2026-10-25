@@ -1,0 +1,12 @@
+- name: Configure the EnvPilot fixture
+  hosts: localhost
+  gather_facts: false
+  vars:
+    service_name: envpilot-agent
+    agent_port: 9100
+  tasks:
+    - name: Ensure fixture base exists
+      ansible.builtin.file:
+        path: /fixture/envpilot
+        state: directory
+        mode: '0755'

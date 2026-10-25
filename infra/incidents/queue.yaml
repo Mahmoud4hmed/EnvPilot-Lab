@@ -1,0 +1,3 @@
+services:
+  worker:
+    command: [celery, -A, config, worker, -l, INFO, --concurrency=2, -Q, maintenance]
