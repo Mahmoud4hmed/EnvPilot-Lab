@@ -8,7 +8,9 @@ Cards now label project/organization, explain the API-reported lifecycle, show t
 
 Twelve frontend smoke tests passed using the bundled Node runtime with the threads pool (six existing role/onboarding cases and six card cases). TypeScript validation and the Next.js production build passed. Browser review of a static preview rendered from the actual card component verified the four lifecycle layouts and the expandable details; its data was explicitly labeled as sample data. The default host Node test runner timed out starting workers, so it is not reported as passing.
 
-The live lab was unavailable during this update: `python lab.py doctor` reported that Docker Engine did not respond within 20 seconds, and Docker Desktop displayed "Starting the Docker Engine". Full-stack smoke and browser E2E checks were not rerun. No infrastructure resets, incident activation, or learner data changes were performed.
+Docker was initially unavailable (`doctor` timed out and Desktop displayed "Starting the Docker Engine"), then recovered. The updated web/backend images were built and the stack reached healthy status. Existing PostgreSQL migrations were already applied; no reset or reseed was needed. `python lab.py check smoke` passed: one PostgreSQL API/seed smoke test, all 12 frontend smoke tests inside Docker, and an actual Celery/provider success operation. These diagnostics can add their normal check records; existing learner records and notes were preserved.
+
+Manual browser verification against the live lab confirmed real card metadata, expandable IDs/API endpoint, read-only viewer guidance with no Provision buttons, and no horizontal page overflow at a 390px viewport. The viewport was restored afterward. The full browser E2E suite and exercise checks were not run for this presentation update. No incidents were activated.
 
 Only the dashboard presentation changed within the exercise reset scope; its loading/provisioning logic and the other 13 exercise source files are unchanged. The dashboard's reset archive and manifest were updated together so resetting Exercise 5 preserves the informative cards.
 
