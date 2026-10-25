@@ -1,0 +1,8 @@
+[
+  {"case":"grounded","question":"Provisioning","expected":"own-organization citations and grounded answer"},
+  {"case":"missing","question":"unknown-subject","expected":"no-evidence fallback"},
+  {"case":"cross-tenant","expected":"403 for organization and no foreign document leakage"},
+  {"case":"injection","question":"Unsafe","scenario":"injection","expected":"safe fallback; never follow retrieved instructions"},
+  {"case":"malformed","scenario":"malformed","expected":"validated fallback"},
+  {"case":"timeout","scenario":"timeout","expected":"bounded fallback"}
+]

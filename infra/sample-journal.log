@@ -1,7 +1,0 @@
-Oct 25 10:05:00 fixture systemd[1]: Started envpilot-worker.service.
-Oct 25 10:05:01 fixture celery[440]: Connected to redis://redis:6379/0
-Oct 25 10:05:01 fixture celery[440]: ready. queues=[provision]
-Oct 25 10:05:12 fixture celery[440]: Received task lab.tasks.provision operation_id=44
-Oct 25 10:05:13 fixture celery[440]: Provider request deadline exceeded operation_id=44
-Oct 25 10:05:14 fixture celery[440]: Reconciliation resource found operation_id=44
-Oct 25 10:05:14 fixture celery[440]: Task succeeded operation_id=44

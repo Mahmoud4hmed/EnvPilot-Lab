@@ -1,0 +1,36 @@
+name: ${MOCK_PROJECT:-envpilot-mock}
+services:
+  db:
+    image: postgres:17.11-bookworm
+    environment: {POSTGRES_USER: envpilot, POSTGRES_PASSWORD: envpilot, POSTGRES_DB: mock}
+    volumes: [mock-db:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U envpilot -d mock]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: redis:7.4.11-alpine
+  api:
+    build: ./backend
+    image: envpilot-mock-backend:local
+    command: [gunicorn, mockapp.wsgi:application, --bind, '0.0.0.0:8000', --workers, '2', --access-logfile, '-']
+    volumes: ['./backend:/app']
+    depends_on:
+      db: {condition: service_healthy}
+  worker:
+    image: envpilot-mock-backend:local
+    command: [celery, -A, mockapp.worker, worker, -l, INFO, --concurrency=1]
+    volumes: ['./backend:/app']
+    depends_on: [redis,api]
+  web:
+    build: ./frontend
+    environment: {NEXT_TELEMETRY_DISABLED: '1'}
+    volumes: ['./frontend/app:/app/app','./frontend/components:/app/components','./frontend/tests:/app/tests']
+  proxy:
+    image: nginx:1.30.6-alpine
+    ports: ['127.0.0.1:${MOCK_PORT:-8091}:80']
+    volumes: ['./infra/nginx.conf:/etc/nginx/conf.d/default.conf:ro']
+    depends_on: [api,web]
+volumes:
+  mock-db:

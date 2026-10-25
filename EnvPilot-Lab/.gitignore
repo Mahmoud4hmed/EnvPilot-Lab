@@ -1,0 +1,11 @@
+.lab/backups/
+.lab/reports/
+.lab/incidents.json
+**/__pycache__/
+**/.pytest_cache/
+**/node_modules/
+**/.next/
+**/*.tsbuildinfo
+**/local.sqlite3
+**/test-results/
+**/playwright-report/

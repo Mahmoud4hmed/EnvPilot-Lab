@@ -1,11 +1,35 @@
-.lab/backups/
-.lab/reports/
-.lab/incidents.json
-**/__pycache__/
-**/.pytest_cache/
+# Local dependencies, caches, and generated artifacts
+**/.venv/
 **/node_modules/
 **/.next/
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+**/*.sqlite3
 **/*.tsbuildinfo
-**/local.sqlite3
 **/test-results/
 **/playwright-report/
+.local/
+.publish/
+
+# Keep learner work and exam submissions private by default
+EnvPilot-Mock/
+EnvPilot-Lab/.lab/backups/
+EnvPilot-Lab/.lab/reports/
+EnvPilot-Lab/.lab/incidents.json
+EnvPilot-Lab/notes/*.md
+!EnvPilot-Lab/notes/TEMPLATE.md
+
+# Instructor solutions and construction-only material stay local
+EnvPilot-Instructor/reference/
+EnvPilot-Instructor/validation/
+EnvPilot-Instructor/build_docs.py
+EnvPilot-Instructor/prepare_sources.py
+EnvPilot-Instructor/create_validation.py
+EnvPilot-Instructor/run_local_validation.py
+EnvPilot-Instructor/validate_docker.py
+
+# Personal configuration
+.env
+.env.*
+!.env.example

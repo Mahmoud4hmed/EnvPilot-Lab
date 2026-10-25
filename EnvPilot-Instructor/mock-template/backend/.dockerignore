@@ -1,0 +1,4 @@
+__pycache__
+.pytest_cache
+local.sqlite3
+tests/__pycache__
