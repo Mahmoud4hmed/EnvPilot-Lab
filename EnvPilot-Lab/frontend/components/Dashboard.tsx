@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { api, Environment, Page, Operation } from '../lib/api';
+import EnvironmentCard from './EnvironmentCard';
 
 export default function Dashboard({token, organization, role}: {token: string; organization: number; role: string}) {
   const [rows, setRows] = useState<Environment[]>([]);
@@ -26,11 +27,7 @@ export default function Dashboard({token, organization, role}: {token: string; o
       <option value="">All</option>{['pending', 'provisioning', 'ready', 'failed'].map(s => <option key={s}>{s}</option>)}
     </select></label><button onClick={() => void load()}>Refresh</button></div>
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
-    <div className="grid">{rows.map(row => <article key={row.id}>
-      <span className={'badge ' + row.status}>{row.status}</span><h3>{row.name}</h3>
-      <p>{row.project_name}</p><p>{row.latest_event}</p>
-      <small>Resource: {row.provider_id || 'awaiting provider'}</small>
-      {row.status === 'pending' && role !== 'viewer' && <button onClick={() => void provision(row)}>Provision {row.name}</button>}
-    </article>)}</div>
+    <p className="environment-list-help">Each card is a temporary development workspace, not an exercise. Review its project, reported status, and latest event. Expand Technical details to trace the record through the API.</p>
+    <div className="grid environment-grid">{rows.map(row => <EnvironmentCard key={row.id} environment={row} role={role} onProvision={row => void provision(row)}/>)}</div>
   </section>;
 }

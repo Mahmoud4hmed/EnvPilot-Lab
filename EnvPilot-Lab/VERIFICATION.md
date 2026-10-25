@@ -2,6 +2,16 @@
 
 This file preserves the original construction record and subsequent runtime verification. The latest update below supersedes the earlier Docker availability blocker for the checks explicitly listed.
 
+## Latest runtime update — informative environment cards
+
+Cards now label project/organization, explain the API-reported lifecycle, show the latest event, provider resource, and UTC timestamps, and provide status/role-specific next steps. Expandable technical details include record IDs and the authenticated API endpoint. Missing evidence is explicit; no VM address, resource health, or operation result is invented.
+
+Twelve frontend smoke tests passed using the bundled Node runtime with the threads pool (six existing role/onboarding cases and six card cases). TypeScript validation and the Next.js production build passed. Browser review of a static preview rendered from the actual card component verified the four lifecycle layouts and the expandable details; its data was explicitly labeled as sample data. The default host Node test runner timed out starting workers, so it is not reported as passing.
+
+The live lab was unavailable during this update: `python lab.py doctor` reported that Docker Engine did not respond within 20 seconds, and Docker Desktop displayed "Starting the Docker Engine". Full-stack smoke and browser E2E checks were not rerun. No infrastructure resets, incident activation, or learner data changes were performed.
+
+Only the dashboard presentation changed within the exercise reset scope; its loading/provisioning logic and the other 13 exercise source files are unchanged. The dashboard's reset archive and manifest were updated together so resetting Exercise 5 preserves the informative cards.
+
 ## Latest runtime update — generic identities and onboarding
 
 ### Persistent demo role selector

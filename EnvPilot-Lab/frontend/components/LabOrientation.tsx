@@ -11,7 +11,7 @@ export default function LabOrientation() {
     </ol>
     <details className="dashboard-explainer"><summary>What do the dashboard controls mean?</summary><div className="explainer-body">
       <p><strong>Organization</strong> is a fictional team. Team Alpha and Team Beta are separate tenants. Accounts have a role in each team.</p>
-      <p><strong>Environment</strong> is a temporary development workspace belonging to a project. Each card shows its lifecycle, latest event, and provider resource ID.</p>
+      <p><strong>Environment</strong> is a temporary development workspace belonging to a project. Each card labels its project, organization, reported lifecycle, latest event, provider resource, and creation/update times. Read <strong>What to do next</strong> for guidance, or expand <strong>Technical details</strong> to find the API endpoint and record IDs.</p>
       <p><strong>Provision</strong> asks a background worker to create a resource in the local fake provider. No real VM or cloud account is used.</p>
       <dl className="state-legend"><div><dt>pending</dt><dd>Waiting for provisioning</dd></div><div><dt>provisioning</dt><dd>Background work in progress</dd></div><div><dt>ready</dt><dd>Provisioning completed</dd></div><div><dt>failed</dt><dd>Inspect operation and event evidence</dd></div></dl>
       <p><strong>Refresh / Status</strong> reload the list or filter it by lifecycle. Names starting with <code>dev-</code> are seeded examples; <code>check-</code> records are created by diagnostic checks.</p>

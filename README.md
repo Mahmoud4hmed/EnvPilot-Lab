@@ -38,6 +38,8 @@ Orientation, engineering notes, reviews, and the final mock complete the two-day
 
 The dashboard is the product you investigate. Environment cards show sample application data; the lab guide explains your assignments. Implementation work happens in the repository and your editor.
 
+Each card explains its reported status, labels the project and organization, shows the latest event, provider resource, and UTC timestamps, and suggests a next step for your role. Expand **Technical details** to find record IDs and the authenticated API endpoint for investigation.
+
 ## Local stack
 
 Django and Django REST Framework provide the API, PostgreSQL stores application data, Redis and a real Celery worker process jobs, and Next.js/React/TypeScript provide the dashboard behind Nginx. A deterministic HTTP provider simulates remote resource creation. Ansible runs in an isolated fixture container, and the AI exercise uses a deterministic local model/retriever.

@@ -9,7 +9,7 @@
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:smoke": "vitest run tests/smoke.test.tsx",
+    "test:smoke": "vitest run tests/smoke.test.tsx tests/environment-card.test.tsx",
     "test:exercise": "vitest run tests/dashboard.test.tsx",
     "test:e2e": "playwright test"
   },

@@ -8,7 +8,7 @@
   "infra/nginx.conf": "7ef8ab5bb84b97d94df1381935b1d1052154b1aaab887e5c6817d00e4e7a6602",
   "infra/incidents/proxy.conf": "da6b27a47a86a354d810a7188c0710261e434fdd0ddf9e39ba9d486ee695e8d1",
   "infra/incidents/queue.yaml": "7c5f7b87a088cdf0ee9135db5f48329799deea64ad297da29a8adbf11cc3ac93",
-  "frontend/components/Dashboard.tsx": "b0b523f306b710ebe9095a6ee0b833f9b8a2891016ce6f999c47227466aaf8b2",
+  "frontend/components/Dashboard.tsx": "630e510ebcbf4ffe6a0f6a969f20dc108dd5c2c31b2604f56229d98da92a1f5d",
   "frontend/lib/api.ts": "855d1231d2a23682763c74cf649a077c7dc032166f0e5f5099c1d89febc8ec7a",
   "ansible/playbook.yml": "5f22e90bcf07ffe03cc967329dbdd50616088cf1d4fcd8d1cc80f47709153f4e",
   "ansible/templates/agent.conf.j2": "ad31086baba02ccb7fdca82c71430a2b6e6aabd12f08cf66e343221ee8ab3c77",

@@ -40,6 +40,8 @@ The dashboard now includes a **Start Day 1** link and a **What do the dashboard 
 
 Your work happens in the repository: read a task, reproduce its behavior using the dashboard/API, edit code, run its checks, and write an engineering note. The first 30 minutes are baseline investigation; start Exercise 1 afterward. Environment cards are sample product data, not a task list.
 
+Each environment card labels its project and organization, explains the reported status, shows the latest recorded event, and lists its provider resource and creation/update times in UTC. **What to do next** gives guidance for the current status and role. Expand **Technical details** for IDs and the authenticated API endpoint. Missing resource IDs or events are shown explicitly; these fields are evidence to investigate, not a guarantee that a resource exists. Provisioning uses a local fake provider, so there is no real VM or public environment URL.
+
 | Username | Membership |
 |---|---|
 | owner | Team Alpha owner |
