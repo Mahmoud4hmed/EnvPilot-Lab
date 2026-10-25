@@ -2,6 +2,14 @@
 
 This file preserves the original construction record and subsequent runtime verification. The latest update below supersedes the earlier Docker availability blocker for the checks explicitly listed.
 
+## Latest runtime update — readable workspace names and training instructions
+
+Generated names now have readable card titles: `dev-4-060` displays as "Sample development workspace 60" with its sample project explained, and `check-<32 hex characters>` displays as "System check workspace" with its diagnostic purpose explained. Generated names and provider resource IDs remain available in Technical details; stored names, API values, and provisioning callback records are unchanged. Custom names outside these conventions are displayed as recorded. Resource references are described as sample or simulated resources in the main card.
+
+The README now explains the fictional product, intended request/worker flow, terminology, card types, startup commands, the first 30 minutes, the exercise workflow, source layout, and the distinction between smoke checks and exercise completion. START_HERE and the in-app glossary use the same terminology.
+
+Verification: 17 frontend smoke tests passed locally and inside Docker; the Next.js production build and its TypeScript check passed; `python lab.py check smoke` passed its PostgreSQL API smoke, frontend tests, and actual worker/provider operation. README relative links resolve, updated content is English, and all 14 exercise/reset files still match the unchanged snapshot/manifest. Manual browser review confirmed readable titles on real records, exact generated names in the expanded details, and no horizontal overflow at a 390px viewport; the viewport was restored. Browser E2E selectors were updated to trace the stored name independently of its display title, but that E2E suite was not executed for this update. No exercise repairs, resets, or incidents were applied.
+
 ## Latest runtime update — informative environment cards
 
 Cards now label project/organization, explain the API-reported lifecycle, show the latest event, provider resource, and UTC timestamps, and provide status/role-specific next steps. Expandable technical details include record IDs and the authenticated API endpoint. Missing evidence is explicit; no VM address, resource health, or operation result is invented.

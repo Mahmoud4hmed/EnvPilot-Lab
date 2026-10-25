@@ -42,6 +42,8 @@ Your work happens in the repository: read a task, reproduce its behavior using t
 
 Each environment card labels its project and organization, explains the reported status, shows the latest recorded event, and lists its provider resource and creation/update times in UTC. **What to do next** gives guidance for the current status and role. Expand **Technical details** for IDs and the authenticated API endpoint. Missing resource IDs or events are shown explicitly; these fields are evidence to investigate, not a guarantee that a resource exists. Provisioning uses a local fake provider, so there is no real VM or public environment URL.
 
+**Sample development workspace 60** is preloaded practice data: its technical name `dev-4-060` means workspace 60 in sample project 4. **System check workspace** is created by an automated diagnostic check; its `check-` name has a random suffix to prevent duplicates. These are application records, not additional exercises. Cards show readable titles and resource descriptions; expand **Technical details** to find exact generated names and provider IDs for API/log investigation. References beginning with `seed-` come from initial sample data and do not identify live VMs. Custom workspace names remain unchanged.
+
 | Username | Membership |
 |---|---|
 | owner | Team Alpha owner |

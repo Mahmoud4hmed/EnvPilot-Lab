@@ -44,7 +44,36 @@ test.each([
 
 test('missing evidence is explicit rather than inventing a successful resource or event', () => {
   render(<EnvironmentCard environment={{...environment, status: 'ready', latest_event: null, created_at: '', updated_at: 'invalid'}} role="owner" onProvision={vi.fn()}/>);
-  expect(screen.getByText('No resource ID recorded')).toBeDefined();
+  expect(screen.getByText('No resource reference recorded')).toBeDefined();
   expect(screen.getByText('No event has been recorded for this environment.')).toBeDefined();
-  expect(screen.getAllByText('Not recorded')).toHaveLength(2);
+  expect(screen.getAllByText('Not recorded')).toHaveLength(3);
+});
+
+test('sample names become readable titles while preserving the exact name and callback record', () => {
+  const sample = {...environment, name: 'dev-4-060', provider_id: 'seed-1-3-59'};
+  const provision = vi.fn();
+  render(<EnvironmentCard environment={sample} role="owner" onProvision={provision}/>);
+  expect(screen.getByRole('heading', {name: 'Sample development workspace 60'})).toBeDefined();
+  expect(screen.getByText(/Example workspace 60 in sample project 4/)).toBeDefined();
+  expect(screen.getByText('Preloaded sample resource')).toBeDefined();
+  expect(screen.getByTestId('environment-name').closest('details')).not.toBeNull();
+  expect(screen.getByText('seed-1-3-59').closest('details')).not.toBeNull();
+  expect(screen.getByTestId('environment-name').textContent).toBe(sample.name);
+  fireEvent.click(screen.getByRole('button', {name: 'Provision Sample development workspace 60'}));
+  expect(provision).toHaveBeenCalledWith(sample);
+});
+
+test('diagnostic workspaces explain their purpose and keep the random suffix in details', () => {
+  const name = 'check-f37c904214a940eda4d135e906a5cbbd';
+  render(<EnvironmentCard environment={{...environment, name}} role="viewer" onProvision={vi.fn()}/>);
+  expect(screen.getByRole('heading', {name: 'System check workspace'})).toBeDefined();
+  expect(screen.getByText(/diagnostic evidence, not a training assignment/)).toBeDefined();
+  expect(screen.getByText(name).closest('details')).not.toBeNull();
+});
+
+test.each(['check-my-project', 'dev-platform-12', 'dev-4-release'])('custom name %s stays unchanged', name => {
+  render(<EnvironmentCard environment={{...environment, name}} role="viewer" onProvision={vi.fn()}/>);
+  expect(screen.getByRole('heading', {name})).toBeDefined();
+  expect(screen.queryByText('Automated lab check')).toBeNull();
+  expect(screen.queryByText('Preloaded practice data')).toBeNull();
 });

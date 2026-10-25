@@ -5,7 +5,8 @@ test('choose a demo role, request provisioning, observe actual worker result', a
   await expect(page.getByRole('heading', {name: 'Environments', exact: true})).toBeVisible();
   await page.getByLabel('Status', {exact: true}).selectOption('pending');
   const button = page.getByRole('button', {name: /^Provision /}).first();
-  const name = (await button.innerText()).replace('Provision ', '');
+  const card = page.getByRole('article').filter({has: button});
+  const name = (await card.getByTestId('environment-name').textContent())!;
   await button.click();
   // Inspect server state independently, so optimistic UI alone cannot satisfy the happy path.
   await expect.poll(async () => page.evaluate(async (envName) => {
@@ -15,7 +16,7 @@ test('choose a demo role, request provisioning, observe actual worker result', a
     return data.results.find((e: {name:string})=>e.name===envName)?.status;
   }, name), {timeout:20000}).toBe('ready');
   await page.getByLabel('Status', {exact: true}).selectOption('ready');
-  await expect(page.getByRole('heading', {name,exact:true})).toBeVisible();
+  await expect(page.getByRole('article').filter({has: page.getByTestId('environment-name').filter({hasText: name})})).toBeVisible();
 });
 
 test('selected role survives guide navigation and page reload',async({page})=>{
