@@ -1,6 +1,6 @@
 Act as a senior software engineer, technical interviewer, and hands-on lab designer. BUILD a complete, runnable training repository called EnvPilot Lab in a new directory. Do the implementation now; do not stop at a plan or a list of exercises.
 
-I am Mahmoud Ahmed, an Egypt-based software engineer/architect with 6+ years in software. My background includes Python, Django/DRF, Flask, React/Next.js, PostgreSQL/MySQL, Redis, Linux, Docker, Nginx, multi-tenant SaaS, deployments, and applied LLM/RAG integration. I want focused practice before a self-paced, three-hour Senior Software Engineer assessment.
+The learner is an experienced software engineer/architect with a background in Python, Django/DRF, Flask, React/Next.js, PostgreSQL/MySQL, Redis, Linux, Docker, Nginx, multi-tenant SaaS, deployments, and applied LLM/RAG integration. This lab provides focused practice before a self-paced, three-hour Senior Software Engineer assessment.
 
 The public role emphasizes Django REST APIs, Next.js/TypeScript, Celery, Linux/networking, cloud/VM lifecycle operations, Ansible, and applied AI:
 https://easyenv.io/careers/senior-software-engineer

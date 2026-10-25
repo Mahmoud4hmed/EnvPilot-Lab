@@ -1,8 +1,25 @@
 # Construction verification — 2026-10-25
 
-الحالة بصراحة: الكود والـlocal checks اتنفذوا، لكن تشغيل Docker الكامل **لسه غير متحقق** على الجهاز ده.
-متعتبرش SQLite أو synchronous task execution إثبات لـPostgreSQL concurrency أو Celery worker حقيقي.
-مواد الإصلاح والتحقق موجودة خارج learner workspace. نسخة التدريب محتفظة بالعيوب المقصودة.
+This file preserves the original construction record and subsequent runtime verification. The latest update below supersedes the earlier Docker availability blocker for the checks explicitly listed.
+
+## Latest runtime update — generic identities and onboarding
+
+Docker is now available and the existing local stack is running. The following were executed successfully on 2026-10-25:
+
+- The identity migration passed its PostgreSQL regression test, including preservation of user/project/environment IDs, passwords, tokens, memberships, events, and operations. Repeated seeding preserved existing work.
+- The migration was applied to the running lab. Before/after record counts and hashes of environment, operation, event, and membership data matched. Accounts are now `owner` and `other_owner`; organizations are Team Alpha and Team Beta.
+- `python lab.py check smoke` passed: PostgreSQL-backed API/login/seed checks, three frontend smoke checks, and an actual Redis/Celery/fake-provider success round trip.
+- The Next.js production build and its TypeScript validation passed. The updated web image was built and deployed with read-only learner-document mounts.
+- Browser verification passed for `owner` login, the neutral organization label, Day 1 navigation, and the Exercise 1 acceptance-criteria page.
+- All 14 exercise/reset source files still match their original starter snapshot. No learner exercise solutions were installed.
+
+The dashboard now links to `/guide`, with the checklist, issue cards, API contract, commands, and glossary. Reference solutions and mock task cards are not exposed through this guide.
+
+This update does not claim completion of the learner exercises, the independent mock, Ansible checks, incident repairs, or PostgreSQL concurrency grading. The original construction-only checks and limitations remain recorded below.
+
+## Original construction record
+
+The original local checks ran while Docker was unavailable. SQLite and synchronous tasks were not treated as evidence of PostgreSQL concurrency or a real worker. Reference repairs remain outside the learner workspace, and the starter retains its intentional defects.
 
 ## Executed and passed
 
@@ -23,7 +40,7 @@
 
 Exact per-test evidence and counts are recorded locally in sibling `EnvPilot-Instructor/validation/local-results.json`, XML reports and logs. Those construction materials and reference solutions are excluded from the public repository; they are not required for learner checks or the mock.
 
-## Blocked / not executed
+## Original blockers / checks not executed at construction time
 
 Docker CLI and Compose are installed. Docker Desktop was started, but its backend reported:
 
@@ -48,7 +65,7 @@ Consequently these remain **unverified**, not passed:
 
 ## Next concrete commands
 
-افتح Docker Desktop وحل startup error الأول. بعد ما Engine يشتغل بوضع Linux containers:
+Ensure Docker Engine is running in Linux containers mode, then run these commands from the repository root:
 
 ```powershell
 cd EnvPilot-Lab

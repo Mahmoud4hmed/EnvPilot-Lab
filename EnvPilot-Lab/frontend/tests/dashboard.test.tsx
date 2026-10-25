@@ -17,13 +17,13 @@ test('loading then empty feedback', async () => {
 });
 test('late response cannot replace current organization', async () => {
   let older!: (value: unknown) => void;
-  fetcher.mockReturnValueOnce(new Promise(r => {older = r;})).mockResolvedValueOnce(ok([row(2, 'Delta')]));
+  fetcher.mockReturnValueOnce(new Promise(r => {older = r;})).mockResolvedValueOnce(ok([row(2, 'Team Beta')]));
   const view = render(<Dashboard token="a" organization={1} role="owner"/>);
   view.rerender(<Dashboard token="a" organization={2} role="owner"/>);
-  await screen.findByText('Delta');
-  await act(async () => {older(ok([row(1, 'Nile')]));});
-  expect(screen.queryByText('Nile')).toBeNull();
-  expect(screen.getByText('Delta')).toBeDefined();
+  await screen.findByText('Team Beta');
+  await act(async () => {older(ok([row(1, 'Team Alpha')]));});
+  expect(screen.queryByText('Team Alpha')).toBeNull();
+  expect(screen.getByText('Team Beta')).toBeDefined();
 });
 test('refresh recovers from errors and clears stale error', async () => {
   fetcher.mockRejectedValueOnce(new Error('offline')).mockResolvedValue(ok([row(1, 'Recovered')]));

@@ -9,8 +9,8 @@ from rest_framework.test import APIClient
 def domain(db):
     User = get_user_model()
     users = {name: User.objects.create_user(username=name) for name in ['owner', 'developer', 'viewer', 'foreign', 'dual', 'outsider']}
-    a = Organization.objects.create(name='Grader Nile')
-    b = Organization.objects.create(name='Grader Delta')
+    a = Organization.objects.create(name='Grader Team Alpha')
+    b = Organization.objects.create(name='Grader Team Beta')
     for user, org, role in [('owner', a, 'owner'), ('developer', a, 'developer'), ('viewer', a, 'viewer'), ('foreign', b, 'owner'), ('dual', a, 'viewer'), ('dual', b, 'developer')]:
         Membership.objects.create(user=users[user], organization=org, role=role)
     p = Project.objects.create(organization=a, name='API')

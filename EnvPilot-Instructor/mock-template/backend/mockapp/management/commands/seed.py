@@ -5,7 +5,7 @@ from mockapp.models import Team,Member,Memo
 
 class Command(BaseCommand):
     def handle(self,*args,**kwargs):
-        for name,team_name,role in [('mahmoud','Nile','owner'),('viewer','Nile','viewer'),('nora','Delta','owner')]:
+        for name,team_name,role in [('owner','Team Alpha','owner'),('viewer','Team Alpha','viewer'),('other_owner','Team Beta','owner')]:
             team,_=Team.objects.get_or_create(name=team_name)
             user,new=get_user_model().objects.get_or_create(username=name)
             if new:

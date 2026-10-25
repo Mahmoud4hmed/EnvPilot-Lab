@@ -18,6 +18,7 @@ Images use explicit release tags (not latest). OS package rebuilds can still cha
 | Ansible core | 2.21.5; Python 3.12–3.14 control-node support |
 | Nginx | 1.30.6 local reverse proxy |
 | UI harness | Vitest 5.0.5, jsdom 26.1.0, Playwright 1.58.2 with matching browser image |
+| Learner guide | react-markdown 10.1.0 and remark-gfm 4.0.1; renders the existing learner documents, with raw HTML disabled |
 
 Sources: [Django supported releases](https://www.djangoproject.com/download/), [Django Python matrix](https://docs.djangoproject.com/en/5.2/faq/install/), [DRF requirements](https://www.django-rest-framework.org/), [Celery stable](https://docs.celeryq.dev/en/stable/getting-started/introduction.html), [Next installation](https://nextjs.org/docs/app/getting-started/installation), [Ansible maintenance matrix](https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html), [PostgreSQL support policy](https://www.postgresql.org/support/versioning/).
 

@@ -87,7 +87,7 @@ def check(root):
     if service_code==0:
         for _ in range(15):
             try:
-                body=json.dumps({'username':'mahmoud','password':'LabPass123!'}).encode()
+                body=json.dumps({'username':'owner','password':'LabPass123!'}).encode()
                 login=urllib.request.Request('http://localhost:8091/api/login/',data=body,headers={'Content-Type':'application/json'})
                 token=json.load(urllib.request.urlopen(login,timeout=2))['token']
                 request=urllib.request.Request('http://localhost:8091/api/memos/',headers={'Authorization':'Token '+token})

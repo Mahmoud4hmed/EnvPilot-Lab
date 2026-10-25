@@ -6,8 +6,8 @@ No browser-only authorization: all object and role checks apply server-side, inc
 
 ## Authentication and roles
 
-`POST /api/login/` with `{"username":"mahmoud","password":"LabPass123!"}` → 200 `{"token":"..."}`; invalid credentials 400.
-`GET /api/me/` → `{"username":"mahmoud","memberships":[{"organization":1,"name":"Nile Labs","role":"owner"}]}`.
+`POST /api/login/` with `{"username":"owner","password":"LabPass123!"}` → 200 `{"token":"..."}`; invalid credentials 400.
+`GET /api/me/` → `{"username":"owner","memberships":[{"organization":1,"name":"Team Alpha","role":"owner"}]}`.
 Unauthenticated product requests: 401. Invalid/expired token: 401. Login uses DRF's standard token view error format; all other API errors use the envelope below.
 
 Any membership reads its own organization. Owner/developer create environments and provision. Viewer reads only. A role in one organization gives no privileges in another.
@@ -25,11 +25,11 @@ Details can be a field object or a detail object; prose need not match exactly. 
 
 ## Projects and environments
 
-`GET /api/projects/?organization=1` → 200 `[{"id":1,"name":"Nile Labs project 1"}]`.
+`GET /api/projects/?organization=1` → 200 `[{"id":1,"name":"Team Alpha project 1"}]`.
 `GET /api/environments/?organization=1&status=pending&page=1&page_size=20` → 200:
 
 ```json
-{"count":80,"results":[{"id":240,"name":"dev-4-060","project":4,"project_name":"Nile Labs project 4","organization":1,"organization_name":"Nile Labs","status":"pending","provider_id":"","latest_event":"Seed history available","created_at":"2026-10-25T00:00:00Z","updated_at":"2026-10-25T00:00:00Z"}]}
+{"count":80,"results":[{"id":240,"name":"dev-4-060","project":4,"project_name":"Team Alpha project 4","organization":1,"organization_name":"Team Alpha","status":"pending","provider_id":"","latest_event":"Seed history available","created_at":"2026-10-25T00:00:00Z","updated_at":"2026-10-25T00:00:00Z"}]}
 ```
 
 Example IDs/counts/timestamps illustrate shape, not guaranteed fixture IDs. Organization is required positive integer; page defaults 1; page_size defaults 20, capped 100. Nonpositive/noninteger pagination: 400. Unknown status: 400. Empty status means no status filter. Ordering: descending numeric environment ID, deterministic across pages. Count is total after filtering. Page beyond end: 200 with empty results. Never include foreign rows.

@@ -34,7 +34,7 @@ def run(scenarios, duplicate=True):
         requests.get(settings.PROVIDER_URL + '/health', timeout=2).raise_for_status()
         from config.celery import app
         assert app.control.inspect(timeout=2).ping(), 'No Celery worker answered control ping'
-        project = Project.objects.filter(organization__name='Nile Labs').first()
+        project = Project.objects.filter(organization__name='Team Alpha').first()
     except Exception as exc:
         print('INFRASTRUCTURE:', exc)
         sys.exit(2)

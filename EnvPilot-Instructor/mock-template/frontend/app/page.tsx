@@ -3,7 +3,7 @@ import {useState} from 'react';
 import MemoEditor,{Memo} from '../components/MemoEditor';
 export default function Home(){
   const [token,setToken]=useState('');const [rows,setRows]=useState<Memo[]>([]);const [error,setError]=useState('');
-  const [username,setUsername]=useState('mahmoud');const [password,setPassword]=useState('');
+  const [username,setUsername]=useState('owner');const [password,setPassword]=useState('');
   async function login(e:React.FormEvent){e.preventDefault();setError('');try{
     const response=await fetch('/api/login/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
     if(!response.ok)throw new Error('Login failed');const body=await response.json();setToken(body.token);

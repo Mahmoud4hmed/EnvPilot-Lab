@@ -10,7 +10,7 @@ pytestmark=pytest.mark.django_db(transaction=True)
 
 @pytest.fixture
 def data():
-    teams=[Team.objects.create(name=name) for name in ['Nile','Delta']]
+    teams=[Team.objects.create(name=name) for name in ['Team Alpha','Team Beta']]
     users={}
     for name,team,role in [('owner',teams[0],'owner'),('viewer',teams[0],'viewer'),('foreign',teams[1],'owner')]:
         users[name]=get_user_model().objects.create_user(username=name)

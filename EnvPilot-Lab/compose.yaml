@@ -62,11 +62,20 @@ services:
     environment:
       WATCHPACK_POLLING: 'true'
       NEXT_TELEMETRY_DISABLED: '1'
+      LAB_DOCS_DIR: /lab-docs
     volumes:
       - ./frontend/app:/app/app
       - ./frontend/components:/app/components
       - ./frontend/lib:/app/lib
       - ./frontend/tests:/app/tests
+      - ./docs:/lab-docs/docs:ro
+      - ./issues:/lab-docs/issues:ro
+      - ./notes/TEMPLATE.md:/lab-docs/notes/TEMPLATE.md:ro
+      - ./START_HERE.md:/lab-docs/START_HERE.md:ro
+      - ./DAY_1.md:/lab-docs/DAY_1.md:ro
+      - ./DAY_2.md:/lab-docs/DAY_2.md:ro
+      - ./RUBRIC.md:/lab-docs/RUBRIC.md:ro
+      - ./VERIFICATION.md:/lab-docs/VERIFICATION.md:ro
     mem_limit: 1536m
     healthcheck:
       test: [CMD, node, -e, "fetch('http://localhost:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]

@@ -13,7 +13,7 @@ def test_seed_auth_and_normal_navigation():
     client = APIClient()
     assert client.get('/health/').status_code == 200
     assert client.get('/api/me/').status_code == 401
-    response = client.post('/api/login/', {'username': 'mahmoud', 'password': 'LabPass123!'})
+    response = client.post('/api/login/', {'username': 'owner', 'password': 'LabPass123!'})
     assert response.status_code == 200
     client.credentials(HTTP_AUTHORIZATION='Token ' + response.data['token'])
     me = client.get('/api/me/')

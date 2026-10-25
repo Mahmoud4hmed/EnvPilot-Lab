@@ -23,7 +23,7 @@ curl -i http://localhost:8090/health/
 الـCLI `lab.py` بيضيف الـoverlays النشطة تلقائيًا للـmutations.
 
 ```bash
-curl -s http://localhost:8090/api/login/ -H 'Content-Type: application/json' -d '{"username":"mahmoud","password":"LabPass123!"}'
+curl -s http://localhost:8090/api/login/ -H 'Content-Type: application/json' -d '{"username":"owner","password":"LabPass123!"}'
 curl -i http://localhost:8090/api/me/ -H 'Authorization: Token REPLACE_ME'
 docker compose exec db psql -U envpilot -d envpilot -c 'SELECT status,count(*) FROM lab_operation GROUP BY status;'
 docker compose run --rm web npm run typecheck

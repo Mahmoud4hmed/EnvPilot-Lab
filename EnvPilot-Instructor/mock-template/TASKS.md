@@ -2,7 +2,7 @@
 
 These are fictional EnvPilot requirements, not an employer's assessment questions. Timeboxes: inspect/baseline 15 min, API 60 min, UI 45 min, incident 35 min, tests/notes/submission 25 min. Prioritize a working, explained result.
 
-Start: http://localhost:8091, mahmoud / LabPass123!. Also viewer (Nile viewer), nora (Delta owner); same password. This is an independent DB and codebase. Source reload: `docker compose restart api worker`; frontend hot reloads.
+Start: http://localhost:8091, owner / LabPass123!. Also viewer (Team Alpha viewer), other_owner (Team Beta owner); same password. This is an independent DB and codebase. Source reload: `docker compose restart api worker`; frontend hot reloads.
 
 ## Task A — Archive environment handover memos
 

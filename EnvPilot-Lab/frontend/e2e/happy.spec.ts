@@ -10,7 +10,7 @@ test('sign in, request provisioning, observe actual worker result', async ({page
   await button.click();
   // Inspect server state independently, so optimistic UI alone cannot satisfy the happy path.
   await expect.poll(async () => page.evaluate(async (envName) => {
-    const login = await fetch('/api/login/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'mahmoud',password:'LabPass123!'})}).then(r=>r.json());
+    const login = await fetch('/api/login/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'owner',password:'LabPass123!'})}).then(r=>r.json());
     const me = await fetch('/api/me/',{headers:{Authorization:`Token ${login.token}`}}).then(r=>r.json());
     const data = await fetch(`/api/environments/?organization=${me.memberships[0].organization}&page_size=100`,{headers:{Authorization:`Token ${login.token}`}}).then(r=>r.json());
     return data.results.find((e: {name:string})=>e.name===envName)?.status;

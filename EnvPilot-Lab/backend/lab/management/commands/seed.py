@@ -10,16 +10,16 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         User = get_user_model()
         users = {}
-        for name in ['mahmoud', 'developer', 'viewer', 'nora', 'dual', 'outsider']:
+        for name in ['owner', 'developer', 'viewer', 'other_owner', 'dual', 'outsider']:
             user, created = User.objects.get_or_create(username=name)
             if created:
                 user.set_password('LabPass123!')
                 user.save()
             users[name] = user
-        for org_name, owner in [('Nile Labs', 'mahmoud'), ('Delta Works', 'nora')]:
+        for org_name, owner in [('Team Alpha', 'owner'), ('Team Beta', 'other_owner')]:
             org, _ = Organization.objects.get_or_create(name=org_name)
             roles = {owner: 'owner', 'dual': 'developer'}
-            if owner == 'mahmoud':
+            if owner == 'owner':
                 roles.update({'developer': 'developer', 'viewer': 'viewer'})
             for name, role in roles.items():
                 Membership.objects.get_or_create(user=users[name], organization=org, defaults={'role': role})

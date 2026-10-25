@@ -1,6 +1,6 @@
 # EnvPilot Lab — Start Here
 
-Mahmoud, this is an independent hands-on lab for a fictional product that manages temporary development environments.
+This is an independent hands-on lab for a fictional product that manages temporary development environments.
 The target is 14 focused hours over two days, including a three-hour mock assessment at the end. Breaks are additional.
 These are target timeboxes, not guaranteed completion times.
 The exercises contain intentional defects. Your job is to read the code, reproduce the problems, fix them, and explain your decisions.
@@ -34,14 +34,20 @@ python lab.py check smoke
 
 Open http://localhost:8090. All accounts are fictional and use the password `LabPass123!`.
 
+The dashboard now includes a **Start Day 1** link and a **What do the dashboard controls mean?** glossary. Open http://localhost:8090/guide to read the checklist, exercise cards, API contract, and commands without leaving the browser.
+
+Your work happens in the repository: read a task, reproduce its behavior using the dashboard/API, edit code, run its checks, and write an engineering note. The first 30 minutes are baseline investigation; start Exercise 1 afterward. Environment cards are sample product data, not a task list.
+
 | Username | Membership |
 |---|---|
-| mahmoud | Nile Labs owner |
-| developer | Nile Labs developer |
-| viewer | Nile Labs viewer |
-| nora | Delta Works owner |
+| owner | Team Alpha owner |
+| developer | Team Alpha developer |
+| viewer | Team Alpha viewer |
+| other_owner | Team Beta owner |
 | dual | developer in both organizations |
 | outsider | no memberships |
+
+Existing installations: run `docker compose exec api python manage.py migrate` once to rename the original demo accounts and organizations in place. Then log in as `owner` with your existing password (default `LabPass123!`). Environment IDs, project IDs, operation history, memberships, and tokens are preserved. New installations get the generic names automatically.
 
 The first `up` applies migrations and adds seed data. Running it again preserves your work, notes, and any passwords you have changed.
 The initial seed creates 480 environments and 1,440 history events. Get IDs from `/api/me/` and `/api/projects/` rather than assuming fixed values.
