@@ -1,7 +1,7 @@
 # DAY 1 — 7 focused hours
 
-الهدف تفهم السلوك بالدليل، مش تقرا الحل. اكتب hypothesis قبل التعديل وبعدها جرّبها.
-الوقت target timeboxes؛ الـbreaks زيادة. عند نهاية الوقت سجّل اللي فاضل بدل ما تخبي failures.
+Build an evidence-based understanding of the behavior. Write a hypothesis before editing, then test it.
+These are target timeboxes; breaks are additional. At the end of each timebox, record unfinished work and any remaining failures.
 
 - [ ] 00:00–00:30 Orientation & baseline investigation — 30 min. Start stack, run smoke, inspect architecture/contract, collect first request/log evidence.
 - [ ] 00:30–02:00 [Exercise 1](issues/01-api.md) — 90 min. API behavior and tenant isolation.
@@ -10,4 +10,4 @@
 - [ ] 05:00–06:15 [Exercise 4](issues/04-incidents.md) — 75 min. Two independent incidents.
 - [ ] 06:15–07:00 Review, engineering notes, remaining small fixes — 45 min.
 
-آخر اليوم: احفظ نتائج checks، 3 قرارات وليه اخترتهم، ومخاطر لسه مفتوحة.
+At the end of the day, save your check results, explain three engineering decisions, and record any remaining risks.

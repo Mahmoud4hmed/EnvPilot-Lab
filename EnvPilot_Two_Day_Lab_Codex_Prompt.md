@@ -14,7 +14,7 @@ I must do meaningful engineering work myself: investigate an unfamiliar reposito
 
 Keep the scope realistic for two days. Prioritize backend correctness, asynchronous reliability, and debugging. Supply enough working scaffolding that I spend my time engineering rather than creating boilerplate. Do not build a course platform, LMS, or elaborate grading website.
 
-Use English for issue cards, API contracts, and interview-style deliverables. Use simple Egyptian Arabic for orientation, conceptual explanations, and hints, retaining familiar English technical terms.
+Use clear English throughout the lab: UI text, orientation, conceptual explanations, hints, issue cards, API contracts, and interview-style deliverables.
 
 ## 2. The product and local stack
 
@@ -225,7 +225,7 @@ Use official documentation when necessary. If Docker or another essential capabi
 
 Prefer a coherent, small codebase over a large collection of loosely connected demos. Stop after building and validating the training setup; leave the actual learner tasks for me.
 
-Your final response should be brief and in Egyptian Arabic:
+Your final response should be brief and in English:
 - What was built and its directory.
 - Exact startup command, local URL, and demo credentials.
 - Whether setup verification passed and which exercise failures are intentional.

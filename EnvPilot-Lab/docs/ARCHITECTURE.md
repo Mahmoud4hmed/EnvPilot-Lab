@@ -14,10 +14,10 @@ flowchart LR
   Ansible[Ansible one-shot tools container] --> Fixture[(Isolated fixture volume)]
 ```
 
-الـDB transaction بتتحكم في البيانات المحلية بس. الـprovider عنده ledger مستقل؛ timeout مش معناه إن الـresource متعملش.
-الـworker بياخد operation ID؛ حالة العملية والـenvironment لازم تتقري من السيرفر.
-التوكن محفوظ في memory الواجهة فقط؛ refresh للصفحة بيحتاج login تاني.
-الـRAG assistant deterministic محليًا، ومفيش اتصال بأي model مدفوع.
+A database transaction controls local data. The provider maintains an independent ledger, so a timeout does not establish whether a resource was created.
+The worker receives an operation ID. Read operation and environment status from the server.
+The frontend stores its token only in memory. Reloading the page requires signing in again.
+The local RAG assistant is deterministic and does not call a paid model.
 
 | Path | Purpose |
 |---|---|

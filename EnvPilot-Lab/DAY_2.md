@@ -1,6 +1,6 @@
 # DAY 2 — 7 focused hours
 
-الـmock جزء من الـ14 ساعة، مش وقت زيادة. الـbreaks زيادة والوقت استرشادي.
+The mock is included in the 14 hours. Breaks are additional, and the timeboxes are advisory.
 
 - [ ] 00:00–01:30 [Exercise 5](issues/05-frontend.md) — 90 min. Async dashboard behavior.
 - [ ] 01:30–02:15 [Exercise 6](issues/06-ansible.md) — 45 min. Container fixture automation.

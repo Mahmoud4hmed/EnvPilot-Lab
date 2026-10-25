@@ -11,6 +11,6 @@ This workspace is a self-study starter with intentional exercise defects.
 - Smoke checks must pass with healthy infrastructure; exercise checks may intentionally fail. Never describe an unexecuted Docker/PostgreSQL/worker/Ansible/browser check as passed.
 - Do not activate incidents, reset exercises, or start the independent mock without the learner requesting that action. Reset requires the CLI's explicit --yes flag and its mandatory backup.
 - For checks, use lab.py. No source-keyword grading, automatic solution installation, or host service changes.
-- Explain concepts and hints in simple Egyptian Arabic; keep API contracts, issue cards and interview deliverables in English.
+- Use clear English for all lab content, including the UI, documentation, conceptual explanations, hints, issue cards, API contracts, and interview deliverables. Preserve this language choice when making future changes.
 
 Start with START_HERE.md and VERIFICATION.md. The independent exam has its own workspace, data, timer and issue cards.
