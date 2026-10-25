@@ -96,7 +96,6 @@ No paid account, cloud subscription, API key, real VM, or GPU is required. All a
 
 - `EnvPilot-Lab/`: the learner repository, exercises, notes, and startup guide.
 - `EnvPilot-Instructor/`: behavioral graders, harness tests, and the independent mock template. Keep this folder adjacent to the learner directory; avoid browsing instructor materials during training.
-- `EnvPilot_Two_Day_Lab_Codex_Prompt.md`: the original lab requirements.
 
 Keep the learner and instructor directories adjacent so the CLI can run checks and prepare the mock.
 
