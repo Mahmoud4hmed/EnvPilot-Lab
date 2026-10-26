@@ -29,6 +29,8 @@ Detailed setup: [START_HERE.md](EnvPilot-Lab/START_HERE.md). Resolve Docker/buil
 
 A team (**Organization**) owns **Projects**, each containing workspace records (**Environments**). An **Operation** tracks a provisioning request separately from the environment lifecycle; **Events** record its history.
 
+An **Environment** in a real product is a separate, temporary workspace for running and testing a project version with its own settings and test data. Its benefit is a repeatable setup where developers can try changes without affecting the live application or each other's work.
+
 ```text
 Browser → Nginx → Next.js dashboard / Django REST API → PostgreSQL
 Provision → API operation → Redis → Celery worker → fake HTTP provider
@@ -37,7 +39,7 @@ Provision → API operation → Redis → Celery worker → fake HTTP provider
 
 The API and worker are separate processes sharing backend source; the provider has its own resource ledger. An accepted request is not completed provisioning. The [API contract](EnvPilot-Lab/docs/API_CONTRACT.md) defines intended behavior; the starter deliberately violates some requirements. Investigate API responses and logs rather than trusting a displayed status alone. The AI workflow uses a deterministic local model/retriever; Ansible runs in an isolated fixture container.
 
-**Cards are application data, not exercise assignments.** Initial data: 2 teams, 8 projects, 480 environments, and 1,440 events. You do not need to process every card.
+**Here, each card is a simulated Environment record: an item with a name, status, project, and team.** You use these records to practice permissions, API requests, and background state changes. They do not run real applications or represent separate Docker containers; the containers run the lab itself. Initial data: 2 teams, 8 projects, 480 environments, and 1,440 events. Cards are application data, not exercise assignments; you do not need to process them all.
 
 | Card / technical value | Meaning |
 |---|---|
