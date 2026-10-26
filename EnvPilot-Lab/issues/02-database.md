@@ -1,25 +1,67 @@
 # Exercise 2 — Diagnose and improve PostgreSQL access
 
-Estimated time: 60 minutes (target timebox).
+**Target time:** 60 minutes. **Your role:** backend engineer investigating database work behind a slow list endpoint.
 
-## Context and symptoms
+## The problem
 
-The environment list slows down as the page size increases. Seeded project and audit history data are representative enough to reproduce query growth. Product behavior must stay the same.
+The dashboard lists environments together with project/organization information and the latest history event. As a page contains more records, the starter performs increasing database work. This can make a larger page expensive even though it is still one HTTP request.
+
+Your task is to measure and reduce query growth without changing the API's results. This is a database-access exercise, not a CSS task or a contest to obtain the lowest laptop response time.
+
+## Before you start
+
+Read [the shared workflow](../docs/EXERCISE_WORKFLOW.md) and [the environment-list contract](../docs/API_CONTRACT.md). Use PostgreSQL and an organization you are authorized to read. Exercise 1 is not a prerequisite for measuring the valid list path.
+
+Discover your organization ID from `/api/me/`; the examples below assume you ran the shared API setup and have `ALPHA_ORG_ID`.
+
+## Reproduce and measure
+
+```bash
+python3 lab.py check 2
+docker compose exec api python manage.py profile_queries --organization "$ALPHA_ORG_ID"
+```
+
+The profiling command serializes 5, 20, and 60 rows, prints one `{rows, queries}` result per size, and prints a PostgreSQL execution plan for a pending-environment query. Record all three counts and the plan before editing. The normal seed has enough history and environments for these measurements; verify the reported row counts instead of measuring an accidentally empty organization.
+
+Inspect the request path in `backend/lab/views.py`, queryset construction in `queries.py`, field generation in `serializers.py`, and relationships in `models.py`. You are investigating why data access changes with page size; do not change the response shape or remove required fields to reduce queries.
+
+## Required behavior
+
+| Concern | Required outcome |
+|---|---|
+| Query growth | Let the three counts be Q5, Q20, and Q60. `max(counts) - min(counts) <= 2` and `max(counts) <= 12`; all three sizes must meet this budget. |
+| Latest event | Return the event with the highest numeric event ID, not an arbitrary event; return null when none exists. |
+| Record data | Preserve IDs, names, project/organization fields, statuses, provider IDs, timestamps, and other contracted fields. |
+| Filtering and boundaries | Preserve authorized organization scope and valid status filtering. |
+| Ordering / pagination | Descending environment ID; count is the total after filtering; page limits/defaults and empty out-of-range pages follow the contract. |
+| Query-plan evidence | Use PostgreSQL `EXPLAIN (ANALYZE, BUFFERS)` and explain an index/query-plan decision using observed selectivity and estimates versus actual rows. |
+
+A justified decision **not** to add an index is acceptable. A sequential scan is not automatically a defect. Explain the cost of your approach, including extra memory, index storage/write maintenance, or data fetched but not needed. There is no required wall-clock benchmark result.
+
+## Your evidence
+
+Fill this in with your own results:
+
+| Rows serialized | Queries before | Queries after |
+|---:|---:|---:|
+| 5 | | |
+| 20 | | |
+| 60 | | |
+
+Include a plan excerpt and explain what distribution/selectivity it represents. Compare representative API responses before/after, including an environment with no events and one with several events. Explain why correctness is preserved, not just why the counts fell.
 
 ## Acceptance criteria
 
-- Capture query counts at 5, 20, and 60 results before/after; query growth must remain within two queries and fixed overhead ≤12.
-- Preserve latest-event selection, fields, tenant boundaries, descending IDs, status filters, counts, and pagination.
-- Run EXPLAIN (ANALYZE, BUFFERS) against PostgreSQL. Explain one index/query-plan decision with measured selectivity; a justified decision not to add an index is valid.
-- Explain memory/maintenance tradeoffs; avoid a wall-clock benchmark requirement.
+- [ ] Query counts meet the growth/overhead budget at all three sizes.
+- [ ] Latest-event, null-event, field, scope, filter, order, count, and pagination behavior is preserved.
+- [ ] PostgreSQL plan evidence supports an explicit index/query decision.
+- [ ] The note explains memory/maintenance tradeoffs and includes before/after measurements.
 
-## Relevant checks
+## Verification and deliverables
 
 ```bash
-python lab.py check 2
-docker compose exec api python manage.py profile_queries --organization 1
+python3 lab.py check 2
+docker compose exec api python manage.py profile_queries --organization "$ALPHA_ORG_ID"
 ```
 
-Performance checks use an authorized organization so exercise 1 is not a prerequisite for measuring query growth.
-
-Deliver: working changes, regression evidence, and a short English engineering note using notes/TEMPLATE.md.
+Submit source changes, regression evidence, the completed query-count table, a PostgreSQL plan excerpt, and an English [engineering note](../notes/TEMPLATE.md). SQLite timings or an empty dataset are not substitutes for the required evidence.

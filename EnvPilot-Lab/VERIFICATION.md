@@ -2,6 +2,14 @@
 
 This file preserves the original construction record and subsequent runtime verification. The latest update below supersedes the earlier Docker availability blocker for the checks explicitly listed.
 
+## Latest documentation update — explicit exercise briefs (2026-10-26)
+
+All seven learner issue pages now explain context, reproduction, expected behavior, investigation entry points, acceptance criteria, and deliverables. A shared exercise workflow provides Bash/WSL API session/ID discovery, failure interpretation, and evidence guidance. Both the workflow and detailed code map are registered in the browser guide; exercise links resolve to allowed learner documents.
+
+Verification: 17 existing frontend smoke tests and the Next.js production build/TypeScript validation passed. Static checks validated local links, English content, balanced fences, and all 23 Bash blocks with `bash -n`; the shared API setup block was executed successfully from WSL and discovered real organization/project/environment IDs without creating product records. Manual browser review confirmed that all seven expanded pages and the shared workflow render, and their 30 relative document links map to registered guide pages. All 14 exercise/reset source files remain identical to the starter archive/manifest.
+
+Exercise grading, incident activation, Ansible fixture runs, the mock, and full browser E2E scenarios were not executed for this documentation update. The request examples describe learner actions; only the read/session-setup block was run during verification. No exercise solutions were installed.
+
 ## Latest runtime update — readable workspace names and training instructions
 
 Generated names now have readable card titles: `dev-4-060` displays as "Sample development workspace 60" with its sample project explained, and `check-<32 hex characters>` displays as "System check workspace" with its diagnostic purpose explained. Generated names and provider resource IDs remain available in Technical details; stored names, API values, and provisioning callback records are unchanged. Custom names outside these conventions are displayed as recorded. Resource references are described as sample or simulated resources in the main card.

@@ -56,6 +56,8 @@ Lifecycle: `pending` (awaiting a request) â†’ `provisioning` (background work) â
 
 Spend the first 30 minutes on one baseline investigation:
 
+Use [the exercise workflow](EnvPilot-Lab/docs/EXERCISE_WORKFLOW.md) for copyable API setup commands, interpreting failures, and recording evidence. Each exercise includes its own reproduction steps and expected outcomes.
+
 1. Read [Day 1](EnvPilot-Lab/DAY_1.md), the [architecture](EnvPilot-Lab/docs/ARCHITECTURE.md), and [API contract](EnvPilot-Lab/docs/API_CONTRACT.md), or select **Start Day 1** in the dashboard.
 2. Copy `notes/TEMPLATE.md` to `notes/day-1.md` inside `EnvPilot-Lab/`; record your smoke result and expected behavior.
 3. Inspect one sample workspace and its technical details. Switch to Viewer and back to Owner; compare an API response with the card.
