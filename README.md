@@ -1,6 +1,8 @@
 # EnvPilot Lab
 
-A local training lab for a fictional service that manages temporary development workspaces: **7 exercises + a 3-hour independent mock, within a suggested 14-hour schedule**. Breaks are additional.
+EnvPilot is a fictional service that helps a development team request temporary workspaces and track their setup. For example, a developer requests `payment-test` to try a checkout change; resources are prepared in the background and their status appears on the dashboard. The goal is less manual setup and clear team access.
+
+**This lab simulates that product:** resources are fake and no application is deployed. Repair its management code through **7 exercises + a 3-hour independent mock, within a suggested 14-hour schedule**. Breaks are additional.
 
 Built for **mid-level and senior backend/full-stack engineers** familiar with Python, HTTP/SQL, JavaScript/TypeScript, React, and basic Docker/Linux. Django experience helps. Practice backend correctness, asynchronous reliability, debugging, frontend state, operations, Ansible, and applied AI by repairing intentional defects and explaining your decisions.
 
