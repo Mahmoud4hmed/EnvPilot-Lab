@@ -1,5 +1,5 @@
 {
-  "backend/lab/views.py": "565fdc3830bc64346a378f53857eeed8769f98d186e2630496f5bac1f8cd5bb3",
+  "backend/lab/views.py": "b11a28e2e8f10ebde15825e61868b9cd8d80c94ee86c2eef3039fa873a227832",
   "backend/lab/serializers.py": "41e0a3223519568b140c138c215a50e5ba836aa1ebeec3eb127e11f4829558e8",
   "backend/lab/queries.py": "5776038a161a6e62a6940ffdf12076398053dd705012fb3b0610f72c31e5fca7",
   "backend/lab/services.py": "fd2dd9ef6a855fabad8eacf1236cabe0914a651ade0f9a1b949ea677a9cfc2d4",

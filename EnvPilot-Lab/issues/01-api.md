@@ -57,7 +57,7 @@ Keep the documented JSON error envelope. Roles belong to memberships in a partic
 
 ## Where to investigate
 
-Read `backend/config/urls.py` → the relevant method in `backend/lab/views.py` → its serializers, access helper, and related models. `backend/lab/queries.py` builds the list queryset. The [code map](../docs/CODE_MAP.md) explains these responsibilities. Identify current behavior before deciding how to change it; this page does not prescribe a repair implementation.
+Read `backend/config/urls.py` → the relevant function in `backend/lab/views.py` → its serializers, access helper, and related models. The `environments(request)` function handles both GET/HEAD (list) and POST (create). `backend/lab/queries.py` builds the list queryset. The [code map](../docs/CODE_MAP.md) explains these responsibilities. Identify current behavior before deciding how to change it; this page does not prescribe a repair implementation.
 
 ## Acceptance criteria
 

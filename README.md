@@ -103,7 +103,7 @@ Paths below are inside `EnvPilot-Lab/`. [Full file-by-file map and exercise read
 | Checks | `backend/tests/`: smoke/demo regressions; `frontend/tests/`: smoke/card checks and Exercise 5's `dashboard.test.tsx`; `frontend/e2e/`: browser scenarios. These are not the whole grading suite. |
 | Training/support | `issues/`: assignments; `docs/`: contracts/reference; `hints/`: optional levels; `notes/`: your evidence; `.lab/`: reset snapshot, reports, backups/state. |
 
-Read a list request as `Dashboard.load()` → `lib/api.ts` → Nginx → `config/urls.py` → `Environments.get()` → queries/models → serializer → card. Provisioning instead reaches `Provision.post()` → `start_provision()` → Redis → `tasks.provision()` → provider. For Exercise 1, locate one failing endpoint, read its view/serializers/models/access helper, and compare behavior with the contract before editing.
+Read a list request as `Dashboard.load()` → `lib/api.ts` → Nginx → `config/urls.py` → `environments()` (GET) → queries/models → serializer → card. Provisioning instead reaches `provision()` → `start_provision()` → Redis → `tasks.provision()` → provider. For Exercise 1, locate one failing endpoint, read its view/serializers/models/access helper, and compare behavior with the contract before editing.
 
 `lab.py` is the host training CLI; `backend/manage.py` is Django's management entry point. Edit source, not `node_modules/`, `.next/`, `__pycache__/`, reports, or the reset baseline. File responsibilities do not imply correct starter behavior.
 

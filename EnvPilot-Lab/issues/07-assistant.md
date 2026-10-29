@@ -10,7 +10,7 @@ This is an API/data-boundary exercise, not a prompt-writing competition or a req
 
 ## Before you start
 
-Read [the shared workflow](../docs/EXERCISE_WORKFLOW.md) and the [support-assistant contract](../docs/API_CONTRACT.md). Prepare owner/viewer/other-owner tokens and organization IDs. Inspect `backend/lab/assistant.py`, the `Assistant` view, and the relevant models/access rules.
+Read [the shared workflow](../docs/EXERCISE_WORKFLOW.md) and the [support-assistant contract](../docs/API_CONTRACT.md). Prepare owner/viewer/other-owner tokens and organization IDs. Inspect `backend/lab/assistant.py`, the `assistant` view, and the relevant models/access rules.
 
 `retrieval` means selecting support documents for the question; a `citation` is a document ID supporting the answer; a `tool` is an allowed application action requested by model output. All three must stay inside the authorized organization. Retrieved document text and model output are data to validate, not permission to bypass product rules.
 

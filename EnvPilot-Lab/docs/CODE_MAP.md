@@ -42,12 +42,14 @@ EnvPilot-Instructor/               External checks and independent mock template
 
 The backend has a **configuration package** (`config/`) and a **product package** (`lab/`). The product package name is a Django app name; it is not a second copy of the training workspace.
 
+API endpoints use DRF function-based views with `@api_view`. URLs point directly to functions, such as `views.environments`; HTTP methods are declared by the decorator, and the combined list/create function branches on `request.method`. Default token authentication, permissions, and error handling still apply. The demo-session function explicitly overrides authentication/permissions for the local Role selector.
+
 | File inside `EnvPilot-Lab/backend/` | Responsibility | Open it when you need to understand… |
 |---|---|---|
-| [config/urls.py](../backend/config/urls.py) | Maps HTTP paths to API view classes. | Which code handles `/api/environments/` or a provisioning request. |
+| [config/urls.py](../backend/config/urls.py) | Maps HTTP paths directly to function-based views. | Which code handles `/api/environments/` or a provisioning request. |
 | [config/settings.py](../backend/config/settings.py) | Database, REST Framework, authentication, and Celery configuration. | How the application is configured and connected to other services. |
 | [config/celery.py](../backend/config/celery.py) | Creates the Celery application and discovers tasks. | How the worker is connected to Django's configuration. |
-| [lab/views.py](../backend/lab/views.py) | HTTP request handlers: `Me`, `Projects`, `Environments`, `EnvironmentDetail`, `Provision`, `OperationDetail`, and `Assistant`. | How an endpoint reads parameters, calls product code, and returns a response. |
+| [lab/views.py](../backend/lab/views.py) | HTTP request handlers: `login`, `me`, `projects`, `environments`, `environment_detail`, `provision`, `operation_detail`, and `assistant`; `health` checks the database. | How an endpoint reads parameters, calls product code, and returns a response. |
 | [lab/serializers.py](../backend/lab/serializers.py) | Input serializers such as `EnvironmentInput` and `ProvisionInput`, plus output serializers such as `EnvironmentSerializer`. | How request data is validated and model data becomes JSON. |
 | [lab/permissions.py](../backend/lab/permissions.py) | Shared organization-access helper, `organization_for(...)`. | How membership and read/write role rules are represented. |
 | [lab/queries.py](../backend/lab/queries.py) | Builds the environment queryset used by the list endpoint. | Which records are selected, their ordering, and database-query behavior. |
@@ -89,8 +91,8 @@ For an environment list request, use this reading order:
 frontend/components/Dashboard.tsx       load()
   -> frontend/lib/api.ts               authenticated GET /api/environments/
   -> infra/nginx.conf                  forwards /api/ to the API service
-  -> backend/config/urls.py            selects Environments
-  -> backend/lab/views.py              Environments.get()
+  -> backend/config/urls.py            selects environments
+  -> backend/lab/views.py              environments() [GET]
   -> backend/lab/queries.py            environment_rows(...)
   -> backend/lab/models.py             database records via Django ORM
   -> backend/lab/serializers.py        EnvironmentSerializer -> JSON response
@@ -103,7 +105,7 @@ frontend/components/Dashboard.tsx       load()
 ```text
 Dashboard.tsx: provision(row)
   -> POST /api/environments/{id}/provision/
-  -> urls.py -> views.py: Provision.post()
+  -> urls.py -> views.py: provision()
   -> serializers.py / services.py: start_provision(...)
   -> recorded Operation + task message through Redis
   -> Celery worker -> tasks.py: provision(operation_id)
@@ -148,6 +150,6 @@ These are entry points for investigation, not repair instructions or a restricti
 | 4 — Incidents | `compose.yaml`, `infra/nginx.conf`, `infra/incidents/`, and the logs of the affected service. |
 | 5 — Dashboard behavior | `frontend/components/Dashboard.tsx`, `frontend/lib/api.ts`, and `frontend/tests/dashboard.test.tsx`. |
 | 6 — Ansible | `ansible/playbook.yml`, `ansible/templates/agent.conf.j2`, and `ansible/verify.py`. |
-| 7 — Applied AI | `backend/lab/assistant.py`, the `Assistant` view, and `SupportDocument`/related models in `backend/lab/models.py`. |
+| 7 — Applied AI | `backend/lab/assistant.py`, the `assistant` view, and `SupportDocument`/related models in `backend/lab/models.py`. |
 
-For Exercise 1, pick one failing request and locate its path in `config/urls.py`. Then read the selected view method, the input/output serializers it uses, the related models, and the access helper. Write down what each part currently does and compare that with the contract before changing code. You do not need to read the whole repository or work on the frontend to begin investigating that request.
+For Exercise 1, pick one failing request and locate its path in `config/urls.py`. Then read the selected view function, the input/output serializers it uses, the related models, and the access helper. Write down what each part currently does and compare that with the contract before changing code. You do not need to read the whole repository or work on the frontend to begin investigating that request.

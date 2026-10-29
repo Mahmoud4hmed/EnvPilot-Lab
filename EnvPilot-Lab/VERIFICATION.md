@@ -2,6 +2,16 @@
 
 This file preserves the original construction record and subsequent runtime verification. The latest update below supersedes the earlier Docker availability blocker for the checks explicitly listed.
 
+## Latest implementation update — function-based API views (2026-10-29)
+
+Learner API handlers, demo-session selection, and password token login now use DRF function-based views. URL patterns reference functions directly; the combined environment list/create function branches on the request method. Read handlers explicitly retain HEAD support, and DRF still handles OPTIONS, token authentication, permissions, parsers, and exceptions. The independent mock template uses the same style; its unimplemented archive endpoint remains unimplemented. No existing exam workspace was started or modified.
+
+The backend view reset snapshot/manifest and learner documentation were updated to the new function names. AST comparisons confirmed that all 11 original implemented class-handler bodies in the learner/demo/mock templates remain unchanged inside the functions; the other 13 exercise/reset files are untouched. The reset archive matches all 14 manifest entries.
+
+Verification: six HTTP protocol cases passed against the original views, then 15 protocol/demo-role cases passed against the function-based views on PostgreSQL. A separate mock-template protocol test passed on its test database, including its existing access behavior and unfinished archive response. Live HTTP checks confirmed password login, demo-session/no-store, GET/HEAD, anonymous 401, and unsupported-method 405. Django system checks passed. `python lab.py check smoke` passed its PostgreSQL API check, 17 frontend smoke tests, and actual worker/provider success operation.
+
+`python lab.py check 1` returned the same per-criterion results before and after conversion: 9 passed and 11 expected training failures. An initial overlapping test run conflicted on the test database and another was interrupted by container restart; neither is reported as passing. Tests were rerun sequentially to obtain the results above. Other exercise graders, full mock assessment, incident checks, and browser E2E were not executed for this refactor. Intentional exercise defects were preserved.
+
 ## Latest documentation update — explicit exercise briefs (2026-10-26)
 
 All seven learner issue pages now explain context, reproduction, expected behavior, investigation entry points, acceptance criteria, and deliverables. A shared exercise workflow provides Bash/WSL API session/ID discovery, failure interpretation, and evidence guidance. Both the workflow and detailed code map are registered in the browser guide; exercise links resolve to allowed learner documents.
